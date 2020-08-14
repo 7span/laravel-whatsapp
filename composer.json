@@ -1,38 +1,38 @@
 {
-    "name": "spatie/:package_name",
-    "description": ":package_description",
+    "name": "sevenspan/valuefirst",
+    "description": "It uses ValueFirst API to send whatsapp messages.",
     "keywords": [
-        "spatie",
-        ":package_name"
+        "laravel",
+        "laravel-valuefirst",
+        "valuefirst"
     ],
-    "homepage": "https://github.com/spatie/:package_name",
+    "homepage": "https://github.com/7span/laravel-valuefirst",
     "license": "MIT",
-    "authors": [
-        {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": "https://spatie.be",
-            "role": "Developer"
-        }
-    ],
+    "authors": [{
+        "name": "Urvashi Thakar",
+        "email": "urvashithakar143@gmail.com",
+        "homepage": "https://github.com/7span/laravel-valuefirst",
+        "role": "Developer"
+    }],
     "require": {
-        "php": "^7.4"
+        "php": "^7.2.5",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
         "orchestra/testbench": "^5.0",
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^8.5",
         "psalm/plugin-laravel": "^1.2",
         "vimeo/psalm": "^3.11"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "SevenSpan\\ValueFirst\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "SevenSpan\\ValueFirst\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -47,10 +47,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
+                "SevenSpan\\ValueFirst\\Providers\\ValueFirstServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+                "ValueFirst": "SevenSpan\\ValueFirst\\Facades\\ValueFirst"
             }
         }
     },

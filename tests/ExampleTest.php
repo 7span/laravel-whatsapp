@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Skeleton\Tests;
+namespace SevenSpan\ValueFirst\Tests;
 
 class ExampleTest extends TestCase
 {
