@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to `laravel-valuefirst` will be documented in this file
+All notable changes to `sevenspan-valuefirst` will be documented in this file
 
 ## 1.0.0 
 

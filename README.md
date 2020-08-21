@@ -89,12 +89,9 @@ composer test
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 
-## Security
-
-
-
 ## Credits
 
+- [Hemratna Bhimani](https://github.com/hemratna)
 - [Urvashi Thakar](https://github.com/UrvashiThakar)
 
 ## License
