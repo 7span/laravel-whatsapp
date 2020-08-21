@@ -2,9 +2,9 @@
 
 namespace SevenSpan\ValueFirst\Providers;
 
-use SevenSpan\ValueFirst\ValueFirst;
 use Illuminate\Support\ServiceProvider;
 use SevenSpan\ValueFirst\Exceptions\InvalidConfig;
+use SevenSpan\ValueFirst\ValueFirst;
 
 class ValueFirstServiceProvider extends ServiceProvider
 {
@@ -18,6 +18,7 @@ class ValueFirstServiceProvider extends ServiceProvider
 
         $this->app->bind('ValueFirst', function () {
             $this->ensureConfigValuesAreSet();
+
             return new ValueFirst();
         });
     }
@@ -36,5 +37,4 @@ class ValueFirstServiceProvider extends ServiceProvider
             }
         }
     }
-
 }
