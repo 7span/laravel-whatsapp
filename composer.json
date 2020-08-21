@@ -4,7 +4,9 @@
     "keywords": [
         "laravel",
         "laravel-valuefirst",
-        "valuefirst"
+        "laravel-value-first",
+        "valuefirst",
+        "value-first"
     ],
     "homepage": "https://github.com/7span/laravel-valuefirst",
     "license": "MIT",
