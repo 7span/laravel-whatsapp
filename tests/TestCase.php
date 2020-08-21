@@ -3,7 +3,7 @@
 namespace SevenSpan\ValueFirst\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use SevenSpan\ValueFirst\ValueFirstServiceProvider;
+use SevenSpan\ValueFirst\Providers\ValueFirstServiceProvider;
 
 class TestCase extends Orchestra
 {

@@ -7,7 +7,7 @@ It uses ValueFirst API to send whatsapp messages.
 You can install the package via composer:
 
 ```bash
-composer require sevenspan/valuefirst
+composer require sevenspan/laravel-value-first
 ```
 
 You can publish the config file with:

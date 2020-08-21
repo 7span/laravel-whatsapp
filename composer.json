@@ -1,5 +1,5 @@
 {
-    "name": "sevenspan/valuefirst",
+    "name": "sevenspan/laravel-value-first",
     "description": "It uses ValueFirst API to send whatsapp messages.",
     "keywords": [
         "laravel",
