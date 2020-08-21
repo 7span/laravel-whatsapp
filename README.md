@@ -75,7 +75,11 @@ $to ='9111111111'; // Phone number with country code where we want to send messa
 $message ='Hello'; // Message that we want to send(Required)
 $tag = 'Whatsapp Message';  //Tag if you want to assign (Optional)
 
+//Without passing tag
 $response=ValueFirst::sendMessage($to,$message);
+
+// With passing tag
+$response=ValueFirst::sendMessage($to,$message,$tag);
 ```
 
 ## Testing
