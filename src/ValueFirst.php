@@ -14,13 +14,13 @@ final class ValueFirst implements ValueFirstInterface
      * @return array|mixed
      */
 
-    public function sendMessage(string $to,string $message,string $tag = "") 
+    public function sendMessage(string $to, string $message, string $tag = "")
     {
         $response = Http::withHeaders([
                         'Accept' => 'application/json',
-                        'Content-Type' => 'application/json'
+                        'Content-Type' => 'application/json',
                     ])
-                    ->post(config('valuefirst.api_uri'),$this->getBody($to,$message,$tag));
+                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $message, $tag));
 
         // Throw an exception if a client or server error occurred...
         $response->throw();
@@ -36,7 +36,7 @@ final class ValueFirst implements ValueFirstInterface
      * @return array
      */
 
-    protected function getBody(string $to,string $message,string $tag = "")
+    protected function getBody(string $to, string $message, string $tag = "")
     {
         $body = [];
         $body['@VER'] = "1.2";
@@ -52,23 +52,22 @@ final class ValueFirst implements ValueFirstInterface
 
         $addressData = [
             '@FROM' => config('valuefirst.from'),
-            '@TO'  => $to,
+            '@TO' => $to,
             '@SEQ' => "1",
-            '@TAG' => $tag
+            '@TAG' => $tag,
         ];
-        array_push($address,$addressData);
+        array_push($address, $addressData);
 
         $sms = [
-            '@UDH'      => "0",
-            '@CODING'   => "1",
-            '@TEXT'     => $message,
+            '@UDH' => "0",
+            '@CODING' => "1",
+            '@TEXT' => $message,
             '@PROPERTY' => "0",
-            '@ID'       => "1",
-            'ADDRESS'   => $address
+            '@ID' => "1",
+            'ADDRESS' => $address,
         ];
-        array_push($body['SMS'],$sms);
+        array_push($body['SMS'], $sms);
 
         return $body;
     }
-
 }
