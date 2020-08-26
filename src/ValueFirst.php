@@ -21,7 +21,7 @@ final class ValueFirst implements ValueFirstInterface
                         'Accept' => 'application/json',
                         'Content-Type' => 'application/json',
                     ])
-                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $message ,"simple" ,$tag));
+                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $message, "simple", $tag));
 
         // Throw an exception if a client or server error occurred...
         $response->throw();
@@ -43,7 +43,7 @@ final class ValueFirst implements ValueFirstInterface
                         'Accept' => 'application/json',
                         'Content-Type' => 'application/json',
                     ])
-                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, "template" , $tag, $data));
+                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, "template", $tag, $data));
 
         // Throw an exception if a client or server error occurred...
         $response->throw();
@@ -62,7 +62,7 @@ final class ValueFirst implements ValueFirstInterface
      * @return array
      */
 
-    protected function getBody(string $to, string $message, string $messageType, string $tag = "", array $data =[])
+    protected function getBody(string $to, string $message, string $messageType, string $tag = "", array $data = [])
     {
         $body = [];
         $body['@VER'] = "1.2";
@@ -91,10 +91,9 @@ final class ValueFirst implements ValueFirstInterface
             'ADDRESS' => $address,
         ];
 
-        if($messageType == "template") {
-            $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message,$data);
-        } 
-        else {
+        if ($messageType == "template") {
+            $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
+        } else {
             $sms['@TEXT'] = $message;
         }
         array_push($body['SMS'], $sms);
