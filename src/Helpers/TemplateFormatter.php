@@ -2,25 +2,24 @@
 
 namespace SevenSpan\ValueFirst\Helpers;
 
-
-class TemplateFormatter 
+class TemplateFormatter
 {
     /**
      * @param string $templateId
      * @param array $data
-     * 
+     *
      *
      * @return string
      */
 
-    public static function formatTemplateData(string $templateId,array $data) : string
+    public static function formatTemplateData(string $templateId, array $data) : string
     {
         $result = "";
         $result .= $templateId;
-        foreach($data as $key=>$value){
+        foreach ($data as $key => $value) {
             $result .= '~'. $value;
         }
+
         return $result;
     }
-
 }
