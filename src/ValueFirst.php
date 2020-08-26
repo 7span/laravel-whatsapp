@@ -3,6 +3,7 @@
 namespace SevenSpan\ValueFirst;
 
 use Illuminate\Support\Facades\Http;
+use SevenSpan\ValueFirst\Helpers\TemplateFormatter;
 
 final class ValueFirst implements ValueFirstInterface
 {
@@ -20,7 +21,7 @@ final class ValueFirst implements ValueFirstInterface
                         'Accept' => 'application/json',
                         'Content-Type' => 'application/json',
                     ])
-                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $message, $tag));
+                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $message ,"simple" ,$tag));
 
         // Throw an exception if a client or server error occurred...
         $response->throw();
@@ -30,13 +31,38 @@ final class ValueFirst implements ValueFirstInterface
 
     /**
      * @param string $to
+     * @param string $templateId
+     * @param string $data
+     *
+     * @return array|mixed
+     */
+
+    public function sendTemplateMessage(string $to, string $templateId, array $data, string $tag = "")
+    {
+        $response = Http::withHeaders([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                    ])
+                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, "template" , $tag, $data));
+
+        // Throw an exception if a client or server error occurred...
+        $response->throw();
+
+        return $response->json();
+    }
+
+
+    /**
+     * @param string $to
      * @param string $message
+     * @param string $mesageType
      * @param string $tag
+     * @param array  $data
      *
      * @return array
      */
 
-    protected function getBody(string $to, string $message, string $tag = "")
+    protected function getBody(string $to, string $message, string $messageType, string $tag = "", array $data =[])
     {
         $body = [];
         $body['@VER'] = "1.2";
@@ -48,24 +74,29 @@ final class ValueFirst implements ValueFirstInterface
         $body['DLR']['@URL'] = "";
 
         $body['SMS'] = [];
-        $address = [];
 
-        $addressData = [
+        $address = [];
+        array_push($address, [
             '@FROM' => config('valuefirst.from'),
             '@TO' => $to,
             '@SEQ' => "1",
             '@TAG' => $tag,
-        ];
-        array_push($address, $addressData);
+        ]);
 
         $sms = [
             '@UDH' => "0",
             '@CODING' => "1",
-            '@TEXT' => $message,
             '@PROPERTY' => "0",
             '@ID' => "1",
             'ADDRESS' => $address,
         ];
+
+        if($messageType == "template") {
+            $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message,$data);
+        } 
+        else {
+            $sms['@TEXT'] = $message;
+        }
         array_push($body['SMS'], $sms);
 
         return $body;

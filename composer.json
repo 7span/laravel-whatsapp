@@ -11,11 +11,18 @@
     "homepage": "https://github.com/7span/laravel-valuefirst",
     "license": "MIT",
     "authors": [{
-        "name": "Urvashi Thakar",
-        "email": "urvashithakar143@gmail.com",
-        "homepage": "https://github.com/7span/laravel-valuefirst",
-        "role": "Developer"
-    }],
+            "name": "Hemratna Bhimani",
+            "email": "hemratna.bhimani@gmail.com",
+            "homepage": "https://github.com/7span/laravel-valuefirst",
+            "role": "Developer"
+        },
+        {
+            "name": "Urvashi Thakar",
+            "email": "urvashithakar143@gmail.com",
+            "homepage": "https://github.com/7span/laravel-valuefirst",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": "^7.2.5",
         "guzzlehttp/guzzle": "^6.3"

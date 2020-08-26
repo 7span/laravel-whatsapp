@@ -71,15 +71,36 @@ return [
 ``` php
 use ValueFirst;
 
+// For Sending WhatsApp Text Messages 
+
 $to ='9111111111'; // Phone number with country code where we want to send message(Required)
 $message ='Hello'; // Message that we want to send(Required)
 $tag = 'Whatsapp Message';  //Tag if you want to assign (Optional)
 
-//Without passing tag
+// Without passing tag
 $response=ValueFirst::sendMessage($to,$message);
 
 // With passing tag
 $response=ValueFirst::sendMessage($to,$message,$tag);
+
+
+// For sending WhatsApp Text Messages (Using Template ID)
+
+$to ='9111111111'; // Phone number with country code where we want to send message(Required)
+$templateId = "123"; //Approved template ID by ValueFirst
+$data = []; // Array of data to replace template data with dynamic one
+$tag = 'Whatsapp Message';  //Tag if you want to assign (Optional)
+
+```bash
+Note : Here array of data should be in sequence of template dynamic value.
+```
+
+// Without passing tag
+$response=ValueFirst::sendTemplateMessage($to,$templateId,$data);
+
+// With passing tag
+$response=ValueFirst::sendTemplateMessage($to,$templateId,$data,$tag);
+
 ```
 
 ## Testing
