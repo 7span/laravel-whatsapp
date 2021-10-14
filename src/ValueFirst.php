@@ -43,6 +43,28 @@ final class ValueFirst implements ValueFirstInterface
                         'Accept' => 'application/json',
                         'Content-Type' => 'application/json',
                     ])
+                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, "templateWithButton", $tag, $data));
+
+        // Throw an exception if a client or server error occurred...
+        $response->throw();
+
+        return $response->json();
+    }
+
+    /**
+     * @param string $to
+     * @param string $templateId
+     * @param string $data
+     *
+     * @return array|mixed
+     */
+
+    public function sendTemplateMessageWithButton(string $to, string $templateId, array $data, string $tag = "")
+    {
+        $response = Http::withHeaders([
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json',
+                    ])
                     ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, "template", $tag, $data));
 
         // Throw an exception if a client or server error occurred...
@@ -91,10 +113,20 @@ final class ValueFirst implements ValueFirstInterface
             'ADDRESS' => $address,
         ];
 
-        if ($messageType == "template") {
-            $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
-        } else {
-            $sms['@TEXT'] = $message;
+        switch($messageType){
+            case 'template':
+                $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
+                break;
+            case 'templateWithButton':
+                $body['USER']['@CH_TYPE'] = 4;
+                $body['MSGTYPE'] = 3;
+                $sms['@B_URLINFO'] = "V11";
+                $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
+                break;
+            default:
+                $sms['@TEXT'] = $message;
+                break;
+
         }
         array_push($body['SMS'], $sms);
 
