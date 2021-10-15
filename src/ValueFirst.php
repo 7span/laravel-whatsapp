@@ -59,13 +59,13 @@ final class ValueFirst implements ValueFirstInterface
      * @return array|mixed
      */
 
-    public function sendTemplateMessageWithButton(string $to, string $templateId, array $data, string $tag = "")
+    public function sendTemplateMessageWithButton(string $to, string $templateId, array $data, string $tag = "", string $urlParam= "")
     {
         $response = Http::withHeaders([
                         'Accept' => 'application/json',
                         'Content-Type' => 'application/json',
                     ])
-                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, "template", $tag, $data));
+                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, "template", $tag, $data, $urlParam));
 
         // Throw an exception if a client or server error occurred...
         $response->throw();
@@ -84,7 +84,7 @@ final class ValueFirst implements ValueFirstInterface
      * @return array
      */
 
-    protected function getBody(string $to, string $message, string $messageType, string $tag = "", array $data = [])
+    protected function getBody(string $to, string $message, string $messageType, string $tag = "", array $data = [], string $urlParam = null)
     {
         $body = [];
         $body['@VER'] = "1.2";
@@ -120,7 +120,7 @@ final class ValueFirst implements ValueFirstInterface
             case 'templateWithButton':
                 $body['USER']['@CH_TYPE'] = 4;
                 $body['MSGTYPE'] = 3;
-                $sms['@B_URLINFO'] = "V11";
+                $sms['@B_URLINFO'] = $urlParam;
                 $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
                 break;
             default:
