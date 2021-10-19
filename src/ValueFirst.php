@@ -118,8 +118,8 @@ final class ValueFirst implements ValueFirstInterface
                 $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
                 break;
             case 'templateWithButton':
-                $body['USER']['@CH_TYPE'] = 4;
-                $sms['@MSGTYPE'] = 3;
+                $body['USER']['@CH_TYPE'] = "4";
+                $sms['@MSGTYPE'] = "3";
                 $sms['@B_URLINFO'] = $urlParam;
                 $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
                 break;
