@@ -1,37 +1,68 @@
 <?php
 
-$finder = Symfony\Component\Finder\Finder::create()
-    ->notPath('bootstrap/*')
-    ->notPath('storage/*')
-    ->notPath('resources/view/mail/*')
-    ->in([
-        __DIR__ . '/src',
-        __DIR__ . '/tests',
-    ])
-    ->name('*.php')
-    ->notName('*.blade.php')
-    ->ignoreDotFiles(true)
-    ->ignoreVCS(true);
+declare(strict_types=1);
 
-return PhpCsFixer\Config::create()
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+$header = <<<'EOF'
+    This file is part of PHP CS Fixer.
+
+    (c) Fabien Potencier <fabien@symfony.com>
+        Dariusz Rumiński <dariusz.ruminski@gmail.com>
+
+    This source file is subject to the MIT license that is bundled
+    with this source code in the file LICENSE.
+    EOF;
+
+$finder = PhpCsFixer\Finder::create()
+    ->ignoreDotFiles(false)
+    ->ignoreVCSIgnored(true)
+    ->exclude('tests/Fixtures')
+    ->in(__DIR__)
+    ->append([
+        __DIR__ . '/dev-tools/doc.php',
+        // __DIR__.'/php-cs-fixer', disabled, as we want to be able to run bootstrap file even on lower PHP version, to show nice message
+    ]);
+
+$config = new PhpCsFixer\Config();
+$config
+    ->setRiskyAllowed(true)
     ->setRules([
-        '@PSR2' => true,
-        'array_syntax' => ['syntax' => 'short'],
-        'ordered_imports' => ['sortAlgorithm' => 'alpha'],
-        'no_unused_imports' => true,
-        'not_operator_with_successor_space' => true,
-        'trailing_comma_in_multiline_array' => true,
-        'phpdoc_scalar' => true,
-        'unary_operator_spaces' => true,
-        'binary_operator_spaces' => true,
-        'blank_line_before_statement' => [
-            'statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try'],
-        ],
-        'phpdoc_single_line_var_spacing' => true,
-        'phpdoc_var_without_name' => true,
-        'method_argument_space' => [
-            'on_multiline' => 'ensure_fully_multiline',
-            'keep_multiple_spaces_after_comma' => true,
-        ]
+        '@PHP74Migration' => true,
+        '@PHP74Migration:risky' => true,
+        '@PHPUnit75Migration:risky' => true,
+        '@PhpCsFixer' => true,
+        '@PhpCsFixer:risky' => true,
+        'general_phpdoc_annotation_remove' => ['annotations' => ['expectedDeprecation']], // one should use PHPUnit built-in method instead
+        'header_comment' => ['header' => $header],
+        'heredoc_indentation' => false, // TODO switch on when # of PR's is lower
+        'modernize_strpos' => true, // needs PHP 8+ or polyfill
+        'use_arrow_functions' => false, // TODO switch on when # of PR's is lower
     ])
     ->setFinder($finder);
+
+// special handling of fabbot.io service if it's using too old PHP CS Fixer version
+if (false !== getenv('FABBOT_IO')) {
+    try {
+        PhpCsFixer\FixerFactory::create()
+            ->registerBuiltInFixers()
+            ->registerCustomFixers($config->getCustomFixers())
+            ->useRuleSet(new PhpCsFixer\RuleSet($config->getRules()));
+    } catch (PhpCsFixer\ConfigurationException\InvalidConfigurationException $e) {
+        $config->setRules([]);
+    } catch (UnexpectedValueException $e) {
+        $config->setRules([]);
+    } catch (InvalidArgumentException $e) {
+        $config->setRules([]);
+    }
+}
+
+return $config;
