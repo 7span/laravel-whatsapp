@@ -1,25 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace SevenSpan\ValueFirst\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 use SevenSpan\ValueFirst\Providers\ValueFirstServiceProvider;
 
-class TestCase extends Orchestra
+/**
+ * @internal
+ * @coversNothing
+ */
+final class TestCase extends Orchestra
 {
-    public function setUp(): void
+    protected function setUp(): void
     {
         parent::setUp();
     }
 
-    protected function getPackageProviders($app)
-    {
-        return [
-            ValueFirstServiceProvider::class,
-        ];
-    }
-
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
         $app['config']->set('database.default', 'sqlite');
         $app['config']->set('database.connections.sqlite', [
@@ -27,5 +36,12 @@ class TestCase extends Orchestra
             'database' => ':memory:',
             'prefix' => '',
         ]);
+    }
+
+    protected function getPackageProviders($app)
+    {
+        return [
+            ValueFirstServiceProvider::class,
+        ];
     }
 }

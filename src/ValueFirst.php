@@ -1,5 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace SevenSpan\ValueFirst;
 
 use Illuminate\Support\Facades\Http;
@@ -8,20 +20,16 @@ use SevenSpan\ValueFirst\Helpers\TemplateFormatter;
 final class ValueFirst implements ValueFirstInterface
 {
     /**
-     * @param string $to
-     * @param string $message
-     * @param string $tag
-     *
      * @return array|mixed
      */
-
-    public function sendMessage(string $to, string $message, string $tag = "")
+    public function sendMessage(string $to, string $message, string $tag = '')
     {
         $response = Http::withHeaders([
-                        'Accept' => 'application/json',
-                        'Content-Type' => 'application/json',
-                    ])
-                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $message, "simple", $tag));
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ])
+            ->post(config('valuefirst.api_uri'), $this->getBody($to, $message, 'simple', $tag))
+        ;
 
         // Throw an exception if a client or server error occurred...
         $response->throw();
@@ -30,20 +38,18 @@ final class ValueFirst implements ValueFirstInterface
     }
 
     /**
-     * @param string $to
-     * @param string $templateId
      * @param string $data
      *
      * @return array|mixed
      */
-
-    public function sendTemplateMessage(string $to, string $templateId, array $data, string $tag = "")
+    public function sendTemplateMessage(string $to, string $templateId, array $data, string $tag = '')
     {
         $response = Http::withHeaders([
-                        'Accept' => 'application/json',
-                        'Content-Type' => 'application/json',
-                    ])
-                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, "template", $tag, $data));
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ])
+            ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, 'template', $tag, $data))
+        ;
 
         // Throw an exception if a client or server error occurred...
         $response->throw();
@@ -52,20 +58,18 @@ final class ValueFirst implements ValueFirstInterface
     }
 
     /**
-     * @param string $to
-     * @param string $templateId
      * @param string $data
      *
      * @return array|mixed
      */
-
-    public function sendTemplateMessageWithButton(string $to, string $templateId, array $data, string $tag = "", string $urlParam= "")
+    public function sendTemplateMessageWithButton(string $to, string $templateId, array $data, string $tag = '', string $urlParam = '')
     {
         $response = Http::withHeaders([
-                        'Accept' => 'application/json',
-                        'Content-Type' => 'application/json',
-                    ])
-                    ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, "templateWithButton", $tag, $data, $urlParam));
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+        ])
+            ->post(config('valuefirst.api_uri'), $this->getBody($to, $templateId, 'templateWithButton', $tag, $data, $urlParam))
+        ;
 
         // Throw an exception if a client or server error occurred...
         $response->throw();
@@ -73,27 +77,21 @@ final class ValueFirst implements ValueFirstInterface
         return $response->json();
     }
 
-
     /**
-     * @param string $to
-     * @param string $message
      * @param string $mesageType
-     * @param string $tag
-     * @param array  $data
      *
      * @return array
      */
-
-    protected function getBody(string $to, string $message, string $messageType, string $tag = "", array $data = [], string $urlParam = null)
+    private function getBody(string $to, string $message, string $messageType, string $tag = '', array $data = [], string $urlParam = null)
     {
         $body = [];
-        $body['@VER'] = "1.2";
+        $body['@VER'] = '1.2';
 
         $body['USER']['@USERNAME'] = config('valuefirst.username');
         $body['USER']['@PASSWORD'] = config('valuefirst.password');
-        $body['USER']['@UNIXTIMESTAMP'] = "";
+        $body['USER']['@UNIXTIMESTAMP'] = '';
 
-        $body['DLR']['@URL'] = "";
+        $body['DLR']['@URL'] = '';
 
         $body['SMS'] = [];
 
@@ -101,34 +99,38 @@ final class ValueFirst implements ValueFirstInterface
         array_push($address, [
             '@FROM' => config('valuefirst.from'),
             '@TO' => $to,
-            '@SEQ' => "1",
+            '@SEQ' => '1',
             '@TAG' => $tag,
         ]);
 
         $sms = [
-            '@UDH' => "0",
-            '@CODING' => "1",
-            '@PROPERTY' => "0",
-            '@ID' => "1",
+            '@UDH' => '0',
+            '@CODING' => '1',
+            '@PROPERTY' => '0',
+            '@ID' => '1',
             'ADDRESS' => $address,
         ];
 
-        switch($messageType){
+        switch ($messageType) {
             case 'template':
                 $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
-                break;
-            case 'templateWithButton':
-                $body['USER']['@CH_TYPE'] = "4";
-                $sms['@MSGTYPE'] = "3";
-                $sms['@B_URLINFO'] = $urlParam;
-                $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
-                break;
-            default:
-                $sms['@TEXT'] = $message;
+
                 break;
 
+            case 'templateWithButton':
+                $body['USER']['@CH_TYPE'] = '4';
+                $sms['@MSGTYPE'] = '3';
+                $sms['@B_URLINFO'] = $urlParam;
+                $sms['@TEMPLATEINFO'] = TemplateFormatter::formatTemplateData($message, $data);
+
+                break;
+
+            default:
+                $sms['@TEXT'] = $message;
+
+                break;
         }
-        array_push($body['SMS'], $sms);
+        $body['SMS'][] = $sms;
 
         return $body;
     }

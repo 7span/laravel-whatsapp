@@ -1,8 +1,19 @@
 <?php
 
-return [
+declare(strict_types=1);
 
-     /*
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+return [
+    /*
     |--------------------------------------------------------------------------
     | ValueFirst Whatsapp API URI
     |--------------------------------------------------------------------------
@@ -11,8 +22,8 @@ return [
     |
     */
 
-    'api_uri' => env('VALUEFIRST_API_URI',''),
-     
+    'api_uri' => env('VALUEFIRST_API_URI', ''),
+
     /*
     |--------------------------------------------------------------------------
     | From Number
@@ -22,9 +33,9 @@ return [
     |
     */
 
-    'from' => env('VALUEFIRST_FROM',''),
+    'from' => env('VALUEFIRST_FROM', ''),
 
-     /*
+    /*
     |--------------------------------------------------------------------------
     | Username
     |--------------------------------------------------------------------------
@@ -33,9 +44,9 @@ return [
     |
     */
 
-    'username' =>  env('VALUEFIRST_USERNAME',''),
+    'username' => env('VALUEFIRST_USERNAME', ''),
 
-     /*
+    /*
     |--------------------------------------------------------------------------
     | Password
     |--------------------------------------------------------------------------
@@ -44,5 +55,5 @@ return [
     |
     */
 
-    'password' =>  env('VALUEFIRST_PASSWORD',''),
+    'password' => env('VALUEFIRST_PASSWORD', ''),
 ];
