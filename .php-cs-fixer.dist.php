@@ -39,7 +39,6 @@ $config
     ->setRules([
         '@PHP74Migration' => true,
         '@PHP74Migration:risky' => true,
-        '@PHPUnit75Migration:risky' => true,
         '@PhpCsFixer' => true,
         '@PhpCsFixer:risky' => true,
         'general_phpdoc_annotation_remove' => ['annotations' => ['expectedDeprecation']], // one should use PHPUnit built-in method instead
