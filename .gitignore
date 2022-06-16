@@ -5,7 +5,6 @@ vendor
 coverage
 .idea
 .php_cs.cache
-.DS_Store
 .env
 .php-cs-fixer.cache
 .php-cs-fixer.dist.php
