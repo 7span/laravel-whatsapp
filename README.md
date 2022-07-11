@@ -13,14 +13,27 @@ composer require sevenspan/laravel-whatsapp-api
 
 ## Usage
 
+For sending whatsapp text messages
+``` php
+use WhatsAppApi;
+
+$to ='9111111111'; // Phone number with country code where we want to send message(Required)
+$message ='Hello'; // Message that we want to send(Required)
+
+// With passing tag
+$response=WhatsAppApi::sendMessage($to,$message,$tag);
+```
+
 For sending whatsApp text messages using template ID
+
+For create accesstoken follow this link: (https://developers.facebook.com/docs/whatsapp/business-management-api/get-started)
 
 ``` php
 use WhatsAppApi;
 
 $to ='9111111111'; // Phone number with country code where we want to send message(Required)
-$WhatsAppBussnessAccountId = "111111111111111"; // Whatsapp bussness account id of your bussness account id (waba_id)(Required)
-$accessToken = ""; // AccessToken of your user , For create accesstoken follow this link: https://developers.facebook.com/docs/whatsapp/business-management-api/get-started
+$WhatsAppBussnessAccountId = "111111111111111"; // Your bussness account id (waba_id)(Required)
+$accessToken = ""; // AccessToken of your user (Required)
 $templateName = "hello_world"; // Template name of your template (Required)
 $languageCode = "en_us"; // Template language code of your template (Required)
 $message = 'test~message';  //if message is dyamic you have to passing a parameter order vice
