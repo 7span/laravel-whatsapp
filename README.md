@@ -13,19 +13,7 @@ composer require sevenspan/laravel-whatsapp-api
 
 ## Usage
 
-For sending whatsapp text messages
-``` php
-use WhatsAppApi;
-
-$to ='9111111111'; // Phone number with country code where we want to send message(Required)
-$message ='Hello'; // Message that we want to send(Required)
-
-// With passing tag
-$response=WhatsAppApi::sendMessage($to,$message,$tag);
-```
-
 For sending whatsApp text messages using template ID
-
 
 ``` php
 use WhatsAppApi;
