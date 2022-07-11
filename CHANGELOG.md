@@ -1,7 +1,7 @@
 # Changelog
 
-All notable changes to `sevenspan/laravel-whatsapp-api` will be documented in this file
+All notable changes to `sevenspan/laravel-whatsapp` will be documented in this file
 
-## 1.0.0  - 2022-07-15
+## v1.0.0  - 2022-07-11
 
 - initial release

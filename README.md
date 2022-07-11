@@ -70,8 +70,8 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Credits
 
-- [Hemratna Bhimani](https://github.com/hemratna)
 - [Nikunj Gadhiya](https://github.com/nikunj320)
+- [Hemratna Bhimani](https://github.com/hemratna)
 
 ## License
 
