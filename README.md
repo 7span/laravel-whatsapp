@@ -1,13 +1,13 @@
 # Laravel WhatsApp API
 
-It uses WhatsApp API to send whatsapp messages.
+It uses WhatsApp API to send WhatsApp messages.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require sevenspan/laravel-whatsapp-api
+composer require sevenspan/laravel-whatsapp
 ```
 
 
