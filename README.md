@@ -1,109 +1,73 @@
-# Laravel ValueFirst
+# Laravel WhatsAppApi
 
-It uses ValueFirst API to send whatsapp messages.
+It uses WhatsAppApi API to send whatsapp messages.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require sevenspan/laravel-value-first
+composer require sevenspan/laravel-whatsapp-api
 ```
 
-You can publish the config file with:
-```bash
-php artisan vendor:publish --provider="SevenSpan\ValueFirst\Providers\ValueFirstServiceProvider" --tag="config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | ValueFirst Whatsapp API URI
-    |--------------------------------------------------------------------------
-    |
-    | The ValueFirst Whatsapp Message API URI.
-    |
-    */
-
-    'api_uri' => env('VALUEFIRST_API_URI',''),
-
-    /*
-    |--------------------------------------------------------------------------
-    | From Number
-    |--------------------------------------------------------------------------
-    |
-    | The Phone number registered with ValueFirst that your SMS will come from
-    |
-    */
-
-    'from' => env('VALUEFIRST_FROM',''),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Username
-    |--------------------------------------------------------------------------
-    |
-    | Your ValueFirst Username
-    |
-    */
-
-    'username' =>  env('VALUEFIRST_USERNAME',''),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Password
-    |--------------------------------------------------------------------------
-    |
-    | Your ValueFirst Password
-    |
-    */
-
-    'password' =>  env('VALUEFIRST_PASSWORD',''),
-];
-```
 
 ## Usage
 
 For sending whatsapp text messages
 ``` php
-use ValueFirst;
+use WhatsAppApi;
 
 $to ='9111111111'; // Phone number with country code where we want to send message(Required)
 $message ='Hello'; // Message that we want to send(Required)
-$tag = 'Whatsapp Message';  //Tag if you want to assign (Optional)
-
-// Without passing tag
-$response=ValueFirst::sendMessage($to,$message);
 
 // With passing tag
-$response=ValueFirst::sendMessage($to,$message,$tag);
+$response=WhatsAppApi::sendMessage($to,$message,$tag);
 ```
 
 For sending whatsApp text messages using template ID
 
 
 ``` php
-use ValueFirst;
+use WhatsAppApi;
 
 $to ='9111111111'; // Phone number with country code where we want to send message(Required)
-$templateId = "123"; //Approved template ID by ValueFirst
-$data = []; // Array of data to replace template data with dynamic one
-$tag = 'Whatsapp Message';  //Tag if you want to assign (Optional)
+$WhatsAppBussnessAccountId = "111111111111111"; // Whatsapp bussness account id of your bussness account id (waba_id)(Required)
+$accessToken = ""; // AccessToken of your user , For create accesstoken follow this link: https://developers.facebook.com/docs/whatsapp/business-management-api/get-started
+$templateName = "hello_world"; // Template name of your template (Required)
+$languageCode = "en_us"; // Template language code of your template (Required)
+$message = 'test~message';  //if message is dyamic you have to passing a parameter order vice
+```
 
+## Example
+your template is like this:
 
+```bash
+The OTP to login into app is: {{1}}
+Regards{{2}}
+Thank you!
+```
 
-// Without passing tag
-$response=ValueFirst::sendTemplateMessage($to,$templateId,$data);
+you have to pass the $message parameter like this:
+$message = "1234~Nikuj"
+her {{1}} is point to test and {{2}} is point to message
 
-// With passing tag
-$response=ValueFirst::sendTemplateMessage($to,$templateId,$data,$tag);
+## Output of above example
+``` bash
+The OTP to login into app is: 1234
+Regards Nikunj
+Thank you!
+```
+
+```php
+// Without passing from mobile number
+$response= WhatsAppApi::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message);
+
+// if you have multiple mobile numbers then you have to pass the from parameter
+$form = "911234567890"
+$response= WhatsAppApi::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message, $form);
 
 ```
-> Note : While sending whatsapp message with template ID, array of data should be in sequence of template dynamic value.
+> Note : While sending whatsapp message with template array of data should be in sequence of template dynamic value.
 
 ## Testing
 

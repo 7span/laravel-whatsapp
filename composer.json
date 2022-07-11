@@ -1,25 +1,19 @@
 {
-    "name": "sevenspan/laravel-value-first",
-    "description": "It uses ValueFirst API to send whatsapp messages.",
+    "name": "sevenspan/laravel-whatsapp-api",
+    "description": "It uses WhatsAppApi API to send whatsapp messages.",
     "keywords": [
         "laravel",
-        "laravel-valuefirst",
-        "laravel-value-first",
-        "valuefirst",
-        "value-first"
+        "laravel-whatsappapi",
+        "laravel-whatsapp-api",
+        "whatsapp",
+        "whatsapp-api"
     ],
-    "homepage": "https://github.com/7span/laravel-valuefirst",
+    "homepage": "https://github.com/7span/laravel-whatsapp-api",
     "license": "MIT",
     "authors": [{
             "name": "Hemratna Bhimani",
             "email": "hemratna.bhimani@gmail.com",
-            "homepage": "https://github.com/7span/laravel-valuefirst",
-            "role": "Developer"
-        },
-        {
-            "name": "Urvashi Thakar",
-            "email": "urvashithakar143@gmail.com",
-            "homepage": "https://github.com/7span/laravel-valuefirst",
+            "homepage": "https://github.com/7span/laravel-whatsapp-api",
             "role": "Developer"
         }
     ],
@@ -32,27 +26,30 @@
     },
     "autoload": {
         "psr-4": {
-            "SevenSpan\\ValueFirst\\": "src"
+            "SevenSpan\\WhatsAppApi\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SevenSpan\\ValueFirst\\Tests\\": "tests"
+            "SevenSpan\\WhatsAppApi\\Tests\\": "tests"
         }
     },
     "scripts": {
         "psalm": "vendor/bin/psalm"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "SevenSpan\\ValueFirst\\Providers\\ValueFirstServiceProvider"
+                "SevenSpan\\WhatsAppApi\\Providers\\WhatsAppApiServiceProvider"
             ],
             "aliases": {
-                "ValueFirst": "SevenSpan\\ValueFirst\\Facades\\ValueFirst"
+                "WhatsAppApi": "SevenSpan\\WhatsAppApi\\Facades\\WhatsAppApi"
             }
         }
     },
