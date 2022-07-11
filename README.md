@@ -1,6 +1,6 @@
-# Laravel WhatsAppApi
+# Laravel WhatsApp API
 
-It uses WhatsAppApi API to send whatsapp messages.
+It uses WhatsApp API to send whatsapp messages.
 
 ## Installation
 
@@ -13,62 +13,49 @@ composer require sevenspan/laravel-whatsapp-api
 
 ## Usage
 
-For sending whatsapp text messages
-``` php
-use WhatsAppApi;
-
-$to ='9111111111'; // Phone number with country code where we want to send message(Required)
-$message ='Hello'; // Message that we want to send(Required)
-
-// With passing tag
-$response=WhatsAppApi::sendMessage($to,$message,$tag);
-```
-
-For sending whatsApp text messages using template ID
-
-For create accesstoken follow this link: (https://developers.facebook.com/docs/whatsapp/business-management-api/get-started)
+For create access token follow this link: [Click here](https://developers.facebook.com/docs/whatsapp/business-management-api/get-started)
 
 ``` php
 use WhatsAppApi;
 
-$to ='9111111111'; // Phone number with country code where we want to send message(Required)
-$WhatsAppBussnessAccountId = "111111111111111"; // Your bussness account id (waba_id)(Required)
-$accessToken = ""; // AccessToken of your user (Required)
+$to = "9111111111"; // Phone number with country code where we want to send message(Required)
+$whatsAppBussnessAccountId = "111111111111111"; // Your bussness account id (waba_id)(Required)
+$accessToken = ""; // Access Token of the user (Required)
 $templateName = "hello_world"; // Template name of your template (Required)
 $languageCode = "en_us"; // Template language code of your template (Required)
 $message = 'test~message';  //if message is dyamic you have to passing a parameter order vice
 ```
+``` php
+// Without passing mobile number(It will use default registered mobile number)
+$response= WhatsAppApi::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message);
+```
 
 ## Example
-your template is like this:
+For Example your template is like this:
 
-```bash
+```
 The OTP to login into app is: {{1}}
 Regards{{2}}
 Thank you!
 ```
 
-you have to pass the $message parameter like this:
-$message = "1234~Nikuj"
-her {{1}} is point to test and {{2}} is point to message
+You have to pass the $message parameter like this $message = "1234~Nikuj"
 
-## Output of above example
-``` bash
+## Output of above template
+```
 The OTP to login into app is: 1234
 Regards Nikunj
 Thank you!
 ```
 
 ```php
-// Without passing from mobile number
-$response= WhatsAppApi::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message);
-
 // if you have multiple mobile numbers then you have to pass the from parameter
-$form = "911234567890"
-$response= WhatsAppApi::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message, $form);
+$from = "911234567890";
+$response= WhatsAppApi::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message, $from);
 
 ```
-> Note : While sending whatsapp message with template array of data should be in sequence of template dynamic value.
+
+> Note : While sending a WhatsApp message with a template you should send the data in a sequence of the template dynamic value.
 
 ## Testing
 
@@ -84,7 +71,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Credits
 
 - [Hemratna Bhimani](https://github.com/hemratna)
-- [Urvashi Thakar](https://github.com/UrvashiThakar)
+- [Nikunj Gadhiya](https://github.com/nikunj320)
 
 ## License
 
