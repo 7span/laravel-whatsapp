@@ -1,19 +1,24 @@
 {
-    "name": "sevenspan/laravel-whatsapp-api",
-    "description": "It uses WhatsAppApi API to send whatsapp messages.",
+    "name": "sevenspan/laravel-whatsapp",
+    "description": "It uses WhatsApp API to send whatsapp messages.",
     "keywords": [
         "laravel",
-        "laravel-whatsappapi",
-        "laravel-whatsapp-api",
-        "whatsapp",
-        "whatsapp-api"
+        "laravel-whatsapp",
+        "whatsapp"
     ],
-    "homepage": "https://github.com/7span/laravel-whatsapp-api",
+    "homepage": "https://github.com/7span/laravel-whatsapp",
     "license": "MIT",
-    "authors": [{
+    "authors": [
+        {
+            "name": "Nikunj Gadhiya",
+            "email": "nikunjpgadhiya@gmail.com",
+            "homepage": "https://github.com/7span/laravel-valuefirst",
+            "role": "Developer"
+        },
+        {
             "name": "Hemratna Bhimani",
             "email": "hemratna.bhimani@gmail.com",
-            "homepage": "https://github.com/7span/laravel-whatsapp-api",
+            "homepage": "https://github.com/7span/laravel-whatsapp",
             "role": "Developer"
         }
     ],
@@ -26,12 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SevenSpan\\WhatsAppApi\\": "src"
+            "SevenSpan\\WhatsApp\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SevenSpan\\WhatsAppApi\\Tests\\": "tests"
+            "SevenSpan\\WhatsApp\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -46,10 +51,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "SevenSpan\\WhatsAppApi\\Providers\\WhatsAppApiServiceProvider"
+                "SevenSpan\\WhatsApp\\Providers\\WhatsAppServiceProvider"
             ],
             "aliases": {
-                "WhatsAppApi": "SevenSpan\\WhatsAppApi\\Facades\\WhatsAppApi"
+                "WhatsApp": "SevenSpan\\WhatsApp\\Facades\\WhatsApp"
             }
         }
     },

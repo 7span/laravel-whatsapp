@@ -16,7 +16,7 @@ composer require sevenspan/laravel-whatsapp-api
 For create access token follow this link: [Click here](https://developers.facebook.com/docs/whatsapp/business-management-api/get-started)
 
 ``` php
-use WhatsAppApi;
+use WhatsApp;
 
 $to = "9111111111"; // Phone number with country code where we want to send message(Required)
 $whatsAppBussnessAccountId = "111111111111111"; // Your bussness account id (waba_id)(Required)
@@ -27,7 +27,7 @@ $message = 'test~message';  //if message is dyamic you have to passing a paramet
 ```
 ``` php
 // Without passing mobile number(It will use default registered mobile number)
-$response= WhatsAppApi::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message);
+$response= WhatsApp::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message);
 ```
 
 ## Example
@@ -51,7 +51,7 @@ Thank you!
 ```php
 // if you have multiple mobile numbers then you have to pass the from parameter
 $from = "911234567890";
-$response= WhatsAppApi::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message, $from);
+$response= WhatsApp::sendMessage($WhatsAppBussnessAccountId, $accessToken, $to, $templateName, $languageCode, $message, $from);
 
 ```
 
