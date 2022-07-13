@@ -9,5 +9,10 @@ interface WhatsAppInterface
     /**
      * @return array|mixed
      */
-    public function sendMessage(string $WhatsAppBussnessAccountId, string $accessToken, string $to, string $templateName, string $languageCode, string $message);
+    public function getPhoneNumbers(string $WhatsAppBusinessAccountId, string $accessToken);
+
+    /**
+     * @return array|mixed
+     */
+    public function sendMessage(string $accessToken, string $to, string $fromPhoneNumberId, string $templateName, string $languageCode, string $message);
 }
