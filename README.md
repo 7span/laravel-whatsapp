@@ -69,7 +69,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | The Whatsapp register phome number Id.
-    |
+    | You have to get from phone number id using getPhoneNumbers() function.
     */
     'from_phone_number_id' => env('FROM_PHONE_NUMBER_ID', ''),
 ];

@@ -21,7 +21,7 @@ return [
     |
     */
 
-    'whats_app_business_account_id' => env('WHATSAPP_BUSINESS_ACCOUNT_ID', ''),
+    'whatsapp_business_account_id' => env('WHATSAPP_BUSINESS_ACCOUNT_ID', ''),
 
     /*
     |--------------------------------------------------------------------------

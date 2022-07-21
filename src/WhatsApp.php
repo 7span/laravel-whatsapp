@@ -14,7 +14,6 @@ class WhatsApp implements WhatsAppInterface
      */
     public function sendTemplateMessage(string $to, string $templateName, string $languageCode,  string $fromPhoneNumberId = '', array $components = [], string $messages = '')
     {
-        dd($components);
         if (empty($fromPhoneNumberId)) $fromPhoneNumberId = config('whatsApp.from_phone_number_id');
         if (empty($accessToken)) $accessToken = config('whatsApp.access_token');
 
@@ -42,7 +41,7 @@ class WhatsApp implements WhatsAppInterface
      */
     public function getPhoneNumbers(string $WhatsAppBusinessAccountId = '', string $accessToken = '')
     {
-        if (empty($WhatsAppBusinessAccountId)) $WhatsAppBusinessAccountId = config('whatsApp.whats_app_business_account_id');
+        if (empty($WhatsAppBusinessAccountId)) $WhatsAppBusinessAccountId = config('whatsApp.whatsapp_business_account_id');
         if (empty($accessToken)) $accessToken = config('whatsApp.access_token');
 
         if (empty($accessToken)) {
