@@ -38,8 +38,8 @@ return [
     | SEPARATOR
     |--------------------------------------------------------------------------
     |
-    | The Whatsapp separator is used for the separat $message.
-    | Note: The "separator" parameter cannot be an empty if you pass ther $message parameter.
+    | The Whatsapp separator is used for the separat your string message.
+    | For example: $message = 'Hello,123'; then set your .env file variable (SEPARATO=,).
     |
     */
     'separator' => env('SEPARATOR', '~'),
