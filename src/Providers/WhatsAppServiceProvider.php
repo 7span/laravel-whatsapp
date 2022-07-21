@@ -6,7 +6,7 @@ namespace SevenSpan\WhatsApp\Providers;
 
 use SevenSpan\WhatsApp\WhatsApp;
 use Illuminate\Support\ServiceProvider;
-use SevenSpan\ValueFirst\Exceptions\InvalidConfig;
+use SevenSpan\WhatsApp\Exceptions\InvalidConfig;
 
 class WhatsAppServiceProvider extends ServiceProvider
 {
@@ -34,7 +34,7 @@ class WhatsAppServiceProvider extends ServiceProvider
     {
         $mandatoryAttributes = config('whatsApp');
         foreach ($mandatoryAttributes as $key => $value) {
-            if (empty($value)) {
+            if (empty($key)) {
                 throw InvalidConfig::couldNotFindConfig($key);
             }
         }
