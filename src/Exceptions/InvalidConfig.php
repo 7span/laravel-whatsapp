@@ -1,6 +1,6 @@
 <?php
 
-namespace SevenSpan\ValueFirst\Exceptions;
+namespace SevenSpan\WhatsApp\Exceptions;
 
 use Exception;
 
