@@ -1,6 +1,6 @@
 {
     "name": "sevenspan/laravel-whatsapp",
-    "description": "It uses WhatsApp API to send whatsapp messages.",
+    "description": "It uses whatsapp cloud API to send whatsapp messages.",
     "keywords": [
         "laravel",
         "laravel-whatsapp",
@@ -23,7 +23,7 @@
         }
     ],
     "require": {
-        "php": "^7.2.5||^8.0"
+        "php": "^7.3||^8.0"
     },
     "require-dev": {
         "psalm/plugin-laravel": "^1.2",
