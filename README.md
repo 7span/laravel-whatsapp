@@ -174,7 +174,7 @@ $components  = [
 
 
 ```php
-$response = WhatsApp::sendTemplateMessage(string $to, string $templateName, string $languageCode,  string $fromPhoneNumberId = '', array $components = [], string $message = '')
+$response = WhatsApp::sendTemplateMessage(string $to, string $templateName, string $languageCode, string $accessToken = '', string $fromPhoneNumberId = '', array $components = [], string $messages = '');
 
 # A successful response includes an object with an identifier prefixed with wamid.
 array:3 [
