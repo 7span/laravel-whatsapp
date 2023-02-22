@@ -121,4 +121,28 @@ class WhatsApp implements WhatsAppInterface
 
         return $body;
     }
+
+     /**
+     * @param string $whatsAppBusinessAccountId
+     * 
+     * @param string $accessToken
+     *
+     * @param array $filters
+     *   
+     * @return array|mixed
+     */
+    public function getMessageTemplates($whatsAppBusinessAccountId, $accessToken, $filters = []){
+        $queryAppends = '';
+        if(!empty($filters)){
+            $queryAppends = '&'.http_build_query($filters);
+        }
+        $response = Http::get(config('whatsApp.api_uri') . $whatsAppBusinessAccountId . '/message_templates?access_token=' . $accessToken.$queryAppends);
+        $error = !empty(json_decode($response->getBody())->error) ? json_decode($response->getBody())->error : '';
+
+        if (!empty($error)) {
+            throw new InvalidArgumentException($error->message);
+        }
+
+        return $response->json();
+    }
 }
