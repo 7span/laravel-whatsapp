@@ -134,7 +134,7 @@ class WhatsApp implements WhatsAppInterface
     public function getMessageTemplates($whatsAppBusinessAccountId, $accessToken, $filters = []){
         $queryAppends = '';
         if(!empty($filters)){
-            $queryAppends = $queryAppends. '&'.http_build_query($filters);
+            $queryAppends = '&'.http_build_query($filters);
         }
         $response = Http::get(config('whatsApp.api_uri') . $whatsAppBusinessAccountId . '/message_templates?access_token=' . $accessToken.$queryAppends);
         $error = !empty(json_decode($response->getBody())->error) ? json_decode($response->getBody())->error : '';
