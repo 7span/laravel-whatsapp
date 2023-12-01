@@ -10,19 +10,19 @@ class WhatsApp implements WhatsAppInterface
 {
     /**
      * @param string $to
-     * 
+     *
      * @param string $templateName
-     * 
+     *
      * @param string $languageCode
-     * 
+     *
      * @param string $accessToken
-     * 
+     *
      * @param string $fromPhoneNumberId
-     * 
+     *
      * @param array $components
-     * 
+     *
      * @param string $messages
-     * 
+     *
      * @return array|mixed
      */
     public function sendTemplateMessage(string $to, string $templateName, string $languageCode, string $accessToken = '', string $fromPhoneNumberId = '', array $components = [], string $messages = '')
@@ -103,15 +103,15 @@ class WhatsApp implements WhatsAppInterface
     /**
      *
      * @param string $to
-     * 
+     *
      * @param string $templateName
-     * 
+     *
      * @param string $languageCode
-     * 
+     *
      * @param array $components
-     * 
+     *
      * @param string $messages
-     * 
+     *
      * @return array|mixed
      */
     public function createBody($to, $templateName, $languageCode, $components = [], $messages = '')
@@ -130,7 +130,7 @@ class WhatsApp implements WhatsAppInterface
         ];
 
         if (!empty($components)) {
-            array_push($body['template']['components'], $components);
+            $body['template']['components'] = $components;
         } else {
             array_push(
                 $body['template']['components'],
