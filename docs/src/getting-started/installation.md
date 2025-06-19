@@ -13,9 +13,7 @@ Before you begin, make sure you have:
 - WhatsApp Business API access
 - Pre-approved WhatsApp message templates
 
-## Step-by-Step Installation
-
-### Install via Composer
+## Installation Via Composer
 
 Add the package to your Laravel project using Composer:
 

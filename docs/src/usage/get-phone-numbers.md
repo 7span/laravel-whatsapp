@@ -1,4 +1,4 @@
-# Getting WhatsApp Business Phone Numbers
+# Phone Numbers
 
 Before sending messages, you need to set up your WhatsApp business phone numbers. This guide explains how to retrieve and manage your WhatsApp Business phone numbers.
 

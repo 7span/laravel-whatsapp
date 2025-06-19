@@ -1,6 +1,6 @@
 # Configuration
 
-This guide will help you set up the Laravel WhatsApp package in your application. We'll walk through each step to get you up and running quickly.
+Follow this guide to configure the Laravel WhatsApp package for seamless integration with your application. You'll learn how to publish the configuration file, set up essential environment variables, and customize options to connect your Laravel project with the WhatsApp Cloud API.
 
 ## Quick Setup
 
@@ -22,9 +22,9 @@ Add these keys to your `.env` file to configure the WhatsApp Cloud API integrati
 # WhatsApp Cloud API Configuration
 WHATSAPP_API_URI=https://graph.facebook.com/v14.0/
 WHATSAPP_BUSINESS_ACCOUNT_ID=your_business_account_id
-WHATSAPP_ACCESS_TOKEN=your_access_token
-WHATSAPP_FROM_PHONE_NUMBER_ID=your_phone_number_id
-WHATSAPP_SEPARATOR=~
+ACCESS_TOKEN=your_access_token
+FROM_PHONE_NUMBER_ID=your_phone_number_id
+SEPARATOR=~
 ```
 
 ## Configuration Options
@@ -57,7 +57,7 @@ All options below can be modified in the `config/whatsapp.php` file.
 ### `access_token`
 
 ```php
-'access_token' => env('WHATSAPP_ACCESS_TOKEN', ''),
+'access_token' => env('ACCESS_TOKEN', ''),
 ```
 
 - **Description**: Access token for authenticating API requests.
@@ -69,7 +69,7 @@ All options below can be modified in the `config/whatsapp.php` file.
 ### `from_phone_number_id`
 
 ```php
-'from_phone_number_id' => env('WHATSAPP_FROM_PHONE_NUMBER_ID', ''),
+'from_phone_number_id' => env('FROM_PHONE_NUMBER_ID', ''),
 ```
 
 - **Description**: The ID of your registered WhatsApp Business phone number.
@@ -80,12 +80,17 @@ All options below can be modified in the `config/whatsapp.php` file.
 ### `separator`
 
 ```php
-'separator' => env('WHATSAPP_SEPARATOR', '~'),
+'separator' => env('SEPARATOR', '~'),
 ```
 
 - **Description**: Character used to separate dynamic values in message templates.
 - **Default**: `~`
 - **Example**: If your template is: `Hello ~, your order #~ is ready!` You can dynamically replace the tildes with real data when sending the message.
+
+## Template Approval Tips
+- Keep content professional and clear
+- Avoid promotional language in transactional templates
+- Follow [WhatsApp's content policy](https://developers.facebook.com/docs/whatsapp/message-templates/guidelines)
 
 ## Additional Resources
 

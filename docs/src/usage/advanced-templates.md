@@ -184,18 +184,3 @@ $response = WhatsApp::sendTemplateMessage(
 ]
 ```
 
-## Important Notes
-
-### Media Requirements
-- Use **HTTPS** URLs only
-- Ensure URLs are publicly accessible
-- Supported formats:
-  - Images: JPG, PNG
-  - Video: MP4
-  - Documents: PDF
-
-### Template Approval Tips
-- Keep content professional and clear
-- Avoid promotional language in transactional templates
-- Follow [WhatsApp's content policy](https://developers.facebook.com/docs/whatsapp/message-templates/guidelines)
-

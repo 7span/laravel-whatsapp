@@ -1,6 +1,11 @@
 # Basic Template
 
-> **What are template messages?** Pre-approved message formats that let your business send structured messages through WhatsApp.
+
+## Before You Start
+
+- Make sure your template is **approved** in Meta's WhatsApp Manager
+- The **country code** must be included in the phone number (without + symbol)
+- The number of variables you provided must exactly match the number of variables in the approved template
 
 ## Quick Example
 
@@ -46,12 +51,6 @@ $response = WhatsApp::sendTemplateMessage(
 
 3. **Customer receives**:  
    `"Hello John, your order #123 is ready!"`
-
-## Before You Start
-
-- Make sure your template is **approved** in Meta's WhatsApp Manager
-- The **country code** must be included in the phone number (without + symbol)
-- The number of values in your message must match the number of `{{placeholders}}`
 
 ## Common Template Examples
 

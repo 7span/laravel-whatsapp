@@ -4,7 +4,7 @@ export default defineConfig({
   title: "Laravel WhatsApp",
   description: "A Laravel package for integrating WhatsApp messaging functionality into your applications",
   srcDir: "src",
-  base: "/open-source/laravel-whatsapp/",
+  head: [["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }]],
   themeConfig: {
     siteTitle: "Laravel WhatsApp",
     logo: "/logo.svg",
@@ -16,6 +16,7 @@ export default defineConfig({
         text: "Introduction",
         items: [
           { text: "Why Laravel WhatsApp?", link: "/introduction/why-laravel-whatsapp" }
+          
         ]
       },
       {
